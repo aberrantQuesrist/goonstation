@@ -14,6 +14,7 @@
 	anchored = 1
 	alpha = 180
 	event_handler_flags = USE_CANPASS | IMMUNE_MANTA_PUSH
+	plane = PLANE_NOSHADOW_ABOVE
 
 	var/deaths = 0
 	var/datum/hud/wraith/hud
@@ -153,7 +154,7 @@
 		if (deaths < 2)
 			boutput(src, "<span class='alert'><b>You have been defeated...for now. The strain of banishment has weakened you, and you will not survive another.</b></span>")
 			src.justdied = 1
-			src.set_loc(pick(latejoin))
+			src.set_loc(pick_landmark(LANDMARK_LATEJOIN))
 			SPAWN_DBG(15 SECONDS) //15 seconds
 				src.justdied = 0
 		else
@@ -184,12 +185,16 @@
 				WO.onAbsorb(M)
 
 	CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
+		if (istype(mover, /obj/projectile))
+			var/obj/projectile/proj = mover
+			if (proj.proj_data.hits_wraiths)
+				return 0
 		if (src.density) return 0
 		else return 1
 
 
 	projCanHit(datum/projectile/P)
-		if (src.density) return 1
+		if (src.density || P.hits_wraiths) return 1
 		else return 0
 
 
@@ -213,7 +218,7 @@
 			src.visible_message("<span class='alert'>[src] is hit by the [P]!</span>")
 
 
-	TakeDamage(zone, brute, burn)
+	TakeDamage(zone, brute, burn, tox, damage_type, disallow_limb_loss)
 		if (!src.density)
 			return
 		health -= burn
@@ -245,7 +250,7 @@
 
 		if (NewLoc)
 			if (isghostrestrictedz(NewLoc.z) && !restricted_z_allowed(src, NewLoc) && !(src.client && src.client.holder))
-				var/OS = observer_start.len ? pick(observer_start) : locate(1, 1, 1)
+				var/OS = pick_landmark(LANDMARK_OBSERVER, locate(1, 1, 1))
 				if (OS)
 					src.set_loc(OS)
 				else
@@ -573,7 +578,7 @@
 
 		var/turf/T = get_turf(src)
 		if (!(T && isturf(T)) || ((isghostrestrictedz(T.z) || T.z != 1) && !(src.client && src.client.holder)))
-			var/OS = observer_start.len ? pick(observer_start) : locate(1, 1, 1)
+			var/OS = pick_landmark(LANDMARK_OBSERVER, locate(1, 1, 1))
 			if (OS)
 				W.set_loc(OS)
 			else

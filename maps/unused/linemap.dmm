@@ -17558,7 +17558,7 @@
 /turf/simulated/floor/black,
 /area/station/owlery)
 "aOX" = (
-/obj/landmark{
+/obj/landmark/spawner{
 	name = "monkeyspawn_horse"
 	},
 /turf/simulated/floor/black,
@@ -23138,10 +23138,7 @@
 /area/station/chapel/main)
 "bbc" = (
 /obj/table/wood/auto,
-/obj/item/clothing/suit/cultist{
-	desc = "Neeeeerds.";
-	name = "+2 robes of dungeon mastery"
-	},
+/obj/item/clothing/suit/cultist/nerd,
 /turf/simulated/floor/carpet{
 	icon_state = "fred2";
 	dir = 2
@@ -24696,7 +24693,7 @@
 /turf/simulated/floor/plating,
 /area/station/maintenance/SWmaint)
 "bfj" = (
-/obj/landmark{
+/obj/landmark/spawner{
 	name = "monkeyspawn_normal"
 	},
 /turf/simulated/floor/grass{
@@ -29869,7 +29866,7 @@
 /turf/simulated/floor/white,
 /area/station/science/lab)
 "brE" = (
-/obj/landmark{
+/obj/landmark/spawner{
 	name = "monkeyspawn_normal"
 	},
 /turf/simulated/floor/white,

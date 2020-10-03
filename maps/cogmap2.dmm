@@ -3695,7 +3695,7 @@
 	dir = 4
 	},
 /obj/disposalpipe/segment,
-/obj/landmark{
+/obj/landmark/spawner{
 	name = "monkeyspawn_horse"
 	},
 /obj/machinery/light_switch/west,
@@ -4606,7 +4606,7 @@
 /obj/disposalpipe/junction{
 	icon_state = "pipe-j2"
 	},
-/obj/landmark/artifact/cannabis_seed,
+/obj/item/seed/cannabis,
 /turf/simulated/floor/plating/scorched,
 /area/station/crew_quarters/quartersB)
 "akk" = (
@@ -17332,7 +17332,7 @@
 /obj/stool/chair{
 	dir = 8
 	},
-/obj/landmark{
+/obj/landmark/spawner{
 	name = "monkeyspawn_mrmuggles"
 	},
 /turf/simulated/floor{
@@ -19395,7 +19395,7 @@
 /turf/simulated/pool/no_animate,
 /area/station/crew_quarters/pool)
 "aSw" = (
-/obj/landmark{
+/obj/landmark/spawner{
 	name = "monkeyspawn_normal"
 	},
 /turf/simulated/pool/no_animate,
@@ -21076,7 +21076,7 @@
 /turf/simulated/floor/plating,
 /area/station/crew_quarters/barber_shop)
 "aWl" = (
-/obj/landmark{
+/obj/landmark/spawner{
 	name = "monkeyspawn_tanhony"
 	},
 /turf/simulated/floor/wood{
@@ -21592,12 +21592,6 @@
 	},
 /area/station/hallway/secondary/entry)
 "aXu" = (
-/turf/simulated/floor/carpet{
-	icon_state = "fblue1"
-	},
-/area/station/hallway/secondary/entry)
-"aXv" = (
-/obj/landmark/block_waypoint/shuttle,
 /turf/simulated/floor/carpet{
 	icon_state = "fblue1"
 	},
@@ -23252,10 +23246,7 @@
 /area/station/crew_quarters/arcade/dungeon)
 "baM" = (
 /obj/table/wood/auto,
-/obj/item/clothing/suit/cultist{
-	desc = "Neeeeerds.";
-	name = "+2 robes of dungeon mastery"
-	},
+/obj/item/clothing/suit/cultist/nerd,
 /obj/item/clothing/mask/skull,
 /turf/simulated/floor/carpet{
 	icon_state = "blue5"
@@ -38230,7 +38221,7 @@
 	icon_state = "1-8"
 	},
 /obj/disposalpipe/segment,
-/obj/landmark{
+/obj/landmark/spawner{
 	name = "monkeyspawn_rathen"
 	},
 /turf/simulated/floor/blueblack{
@@ -46561,6 +46552,9 @@
 	icon_state = "1-2"
 	},
 /obj/table/reinforced/auto,
+/obj/machinery/defib_mount{
+	pixel_y = 3
+	},
 /obj/random_item_spawner/med_kit,
 /turf/simulated/floor/red/side,
 /area/station/security/main)
@@ -49732,7 +49726,7 @@
 /obj/disposalpipe/segment{
 	dir = 4
 	},
-/obj/landmark{
+/obj/landmark/spawner{
 	name = "monkeyspawn_stirstir"
 	},
 /turf/simulated/floor/caution/north{
@@ -53865,7 +53859,7 @@
 "cmM" = (
 /obj/machinery/power/data_terminal,
 /obj/machinery/networked/telepad,
-/obj/landmark{
+/obj/landmark/spawner{
 	name = "monkeyspawn_albert"
 	},
 /obj/cable{
@@ -56429,7 +56423,7 @@
 /obj/stool/chair{
 	dir = 8
 	},
-/obj/landmark{
+/obj/landmark/spawner{
 	name = "monkeyspawn_mrsmuggles"
 	},
 /turf/simulated/floor/plating,
@@ -57103,7 +57097,7 @@
 /obj/item/clothing/mask/balaclava,
 /obj/item/storage/pill_bottle/cyberpunk,
 /obj/storage/crate,
-/obj/landmark/artifact/cannabis_seed,
+/obj/item/seed/cannabis,
 /turf/simulated/floor/plating/scorched,
 /area/station/storage/warehouse)
 "ctL" = (
@@ -73244,7 +73238,7 @@
 	},
 /area/station/medical/dome)
 "dda" = (
-/obj/landmark{
+/obj/landmark/spawner{
 	name = "monkeyspawn_normal"
 	},
 /obj/disposalpipe/segment/mail/horizontal,
@@ -73840,7 +73834,7 @@
 	},
 /area/station/medical/dome)
 "deF" = (
-/obj/landmark{
+/obj/landmark/spawner{
 	name = "monkeyspawn_normal"
 	},
 /obj/disposalpipe/segment/transport{
@@ -74106,7 +74100,7 @@
 	layer = 10;
 	name = "palm tree"
 	},
-/obj/landmark{
+/obj/landmark/spawner{
 	name = "monkeyspawn_normal"
 	},
 /turf/simulated/floor/grass{
@@ -74286,7 +74280,7 @@
 /turf/simulated/floor/black,
 /area/station/medical/cdc)
 "dfJ" = (
-/obj/landmark{
+/obj/landmark/spawner{
 	name = "monkeyspawn_normal"
 	},
 /turf/simulated/floor/grass{
@@ -74540,7 +74534,7 @@
 	layer = 10;
 	name = "palm tree"
 	},
-/obj/landmark{
+/obj/landmark/spawner{
 	name = "monkeyspawn_normal"
 	},
 /turf/simulated/floor/grass{
@@ -75360,11 +75354,11 @@
 /turf/simulated/floor/plating/airless/asteroid,
 /area)
 "dhW" = (
-/obj/landmark/artifact/cannabis_seed,
+/obj/item/seed/cannabis,
 /turf/simulated/floor/plating/airless/asteroid,
 /area)
 "dhX" = (
-/obj/landmark/artifact/seed,
+/obj/item/seed/alien,
 /turf/simulated/floor/plating/airless/asteroid,
 /area)
 "dhY" = (
@@ -143647,7 +143641,7 @@ aFr
 aFi
 aUD
 aVW
-aXv
+aXu
 aZg
 baF
 aFi

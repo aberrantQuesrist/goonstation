@@ -6508,7 +6508,7 @@
 /turf/simulated/floor/wood/two,
 /area/station/crew_quarters/cafeteria)
 "aor" = (
-/obj/landmark{
+/obj/landmark/spawner{
 	name = "monkeyspawn_mrmuggles"
 	},
 /obj/item/device/radio/intercom{
@@ -7694,10 +7694,7 @@
 /obj/item/storage/box/nerd_kit,
 /obj/item/clothing/mask/skull,
 /obj/item/clothing/head/apprentice,
-/obj/item/clothing/suit/cultist{
-	desc = "Neeeeerds.";
-	name = "+2 robes of dungeon mastery"
-	},
+/obj/item/clothing/suit/cultist/nerd,
 /obj/item/paper/book/critter_compendium,
 /turf/simulated/floor/plating,
 /area/station/maintenance/inner)
@@ -8223,7 +8220,7 @@
 	dir = 8;
 	icon_state = "pipe-c"
 	},
-/obj/landmark{
+/obj/landmark/spawner{
 	name = "monkeyspawn_stirstir"
 	},
 /turf/simulated/floor/grey/side{
@@ -8463,7 +8460,7 @@
 "asC" = (
 /obj/stool/chair/couch,
 /obj/machinery/light_switch/north,
-/obj/landmark{
+/obj/landmark/spawner{
 	name = "monkeyspawn_tanhony"
 	},
 /turf/simulated/floor/black,
@@ -13565,7 +13562,7 @@
 /turf/simulated/floor/grass,
 /area/station/medical/dome)
 "aDD" = (
-/obj/landmark{
+/obj/landmark/spawner{
 	name = "monkeyspawn_normal"
 	},
 /obj/machinery/light{
@@ -13799,7 +13796,7 @@
 /turf/simulated/floor/grass,
 /area/station/medical/dome)
 "aEd" = (
-/obj/landmark{
+/obj/landmark/spawner{
 	name = "monkeyspawn_normal"
 	},
 /turf/simulated/floor/grass,
@@ -14047,7 +14044,7 @@
 	dir = 10;
 	icon_state = "line1"
 	},
-/obj/landmark{
+/obj/landmark/spawner{
 	name = "monkeyspawn_krimpus"
 	},
 /turf/simulated/floor/grass,
@@ -26506,7 +26503,7 @@
 /obj/cable{
 	icon_state = "4-8"
 	},
-/obj/landmark{
+/obj/landmark/spawner{
 	name = "monkeyspawn_horse"
 	},
 /turf/simulated/floor/specialroom/arcade,
@@ -26709,7 +26706,7 @@
 /obj/cable{
 	icon_state = "4-8"
 	},
-/obj/landmark{
+/obj/landmark/spawner{
 	name = "monkeyspawn_rathen"
 	},
 /turf/simulated/floor/orangeblack,
@@ -26719,7 +26716,7 @@
 /turf/simulated/pool/no_animate,
 /area/station/crew_quarters/pool)
 "fmZ" = (
-/obj/landmark{
+/obj/landmark/spawner{
 	name = "monkeyspawn_mrsmuggles"
 	},
 /turf/simulated/floor/grey,
@@ -27042,7 +27039,7 @@
 	name = "Indigo Rye"
 	})
 "jvs" = (
-/obj/landmark{
+/obj/landmark/spawner{
 	name = "monkeyspawn_albert"
 	},
 /turf/simulated/floor/engine,
@@ -27224,7 +27221,7 @@
 	},
 /area/station/hallway/primary/east)
 "lqP" = (
-/obj/landmark{
+/obj/landmark/spawner{
 	name = "monkeyspawn_mrmuggles"
 	},
 /turf/simulated/floor/specialroom/bar,

@@ -4479,9 +4479,7 @@
 	})
 "ajb" = (
 /obj/storage/secure/closet/animal,
-/obj/landmark{
-	name = "monkeyspawn_inside"
-	},
+/obj/landmark/spawner/inside/monkey,
 /obj/machinery/firealarm{
 	dir = 4;
 	pixel_x = 26;
@@ -5447,7 +5445,7 @@
 /turf/simulated/floor/blue/checker,
 /area/station/medical/medbay)
 "alm" = (
-/obj/landmark{
+/obj/landmark/spawner{
 	name = "monkeyspawn_normal"
 	},
 /obj/overlay{
@@ -6037,7 +6035,7 @@
 	},
 /area/station/medical/dome)
 "amo" = (
-/obj/landmark{
+/obj/landmark/spawner{
 	name = "monkeyspawn_normal"
 	},
 /obj/machinery/light/incandescent/warm,
@@ -12844,7 +12842,7 @@
 /obj/cable{
 	icon_state = "1-2"
 	},
-/obj/landmark{
+/obj/landmark/spawner{
 	name = "monkeyspawn_normal"
 	},
 /obj/cable{
@@ -15340,10 +15338,7 @@
 "aHh" = (
 /obj/table/wood/auto,
 /obj/item/clothing/mask/skull,
-/obj/item/clothing/suit/cultist{
-	desc = "Neeeeerds.";
-	name = "+2 robes of dungeon mastery"
-	},
+/obj/item/clothing/suit/cultist/nerd,
 /turf/simulated/floor/carpet/arcade/half,
 /area/station/crew_quarters/arcade/dungeon)
 "aHi" = (
@@ -17823,7 +17818,7 @@
 	name = "Catering Hangar"
 	})
 "aMH" = (
-/obj/landmark{
+/obj/landmark/spawner{
 	name = "monkeyspawn_krimpus"
 	},
 /turf/simulated/floor/grass,
@@ -20803,7 +20798,7 @@
 /turf/space/fluid,
 /area)
 "aTv" = (
-/obj/landmark{
+/obj/landmark/spawner{
 	name = "seamonkeyspawn"
 	},
 /turf/space/fluid,
@@ -28022,7 +28017,7 @@
 	},
 /area/station/crew_quarters/bar)
 "bkZ" = (
-/obj/landmark{
+/obj/landmark/spawner{
 	name = "monkeyspawn_mrmuggles"
 	},
 /turf/simulated/floor/specialroom/bar,
@@ -28303,7 +28298,7 @@
 /obj/cable{
 	icon_state = "4-8"
 	},
-/obj/landmark{
+/obj/landmark/spawner{
 	name = "monkeyspawn_rathen"
 	},
 /turf/simulated/floor,
@@ -31197,7 +31192,7 @@
 	icon_state = "chair";
 	dir = 1
 	},
-/obj/landmark{
+/obj/landmark/spawner{
 	name = "monkeyspawn_horse"
 	},
 /turf/simulated/floor/black,
@@ -31513,7 +31508,7 @@
 /turf/simulated/floor/specialroom/gym,
 /area/station/crew_quarters/fitness)
 "btk" = (
-/obj/landmark{
+/obj/landmark/spawner{
 	name = "monkeyspawn_normal"
 	},
 /turf/simulated/floor/specialroom/gym,
@@ -35714,7 +35709,7 @@
 /turf/simulated/floor,
 /area/station/quartermaster/office)
 "bCX" = (
-/obj/landmark{
+/obj/landmark/spawner{
 	name = "monkeyspawn_mrsmuggles"
 	},
 /turf/simulated/floor,
@@ -39740,7 +39735,7 @@
 /turf/simulated/floor/bot,
 /area/station/security/checkpoint/sec_foyer)
 "bMk" = (
-/obj/landmark/artifact/seed,
+/obj/item/seed/alien,
 /turf/simulated/floor/grass,
 /area)
 "bMl" = (
@@ -40263,7 +40258,7 @@
 	},
 /area/station/crew_quarters/courtroom)
 "bNF" = (
-/obj/landmark{
+/obj/landmark/spawner{
 	name = "monkeyspawn_tanhony"
 	},
 /turf/simulated/floor/wood,
@@ -40477,7 +40472,7 @@
 	icon_state = "shrub";
 	dir = 10
 	},
-/obj/landmark/artifact/seed,
+/obj/item/seed/alien,
 /obj/item/seed/cannabis,
 /obj/item/seed/cannabis,
 /turf/simulated/floor/black,
@@ -40550,7 +40545,7 @@
 /turf/simulated/floor/grime,
 /area/station/security/brig)
 "bOu" = (
-/obj/landmark{
+/obj/landmark/spawner{
 	name = "monkeyspawn_stirstir"
 	},
 /obj/disposalpipe/segment/brig,
@@ -45440,7 +45435,7 @@
 /obj/stool/chair/wooden{
 	dir = 8
 	},
-/obj/landmark{
+/obj/landmark/spawner{
 	name = "father_jack"
 	},
 /turf/simulated/floor/specialroom/bar,
@@ -45525,7 +45520,7 @@
 /area/diner/bathroom)
 "cbc" = (
 /obj/stool/chair/wooden,
-/obj/landmark{
+/obj/landmark/spawner{
 	name = "don_glab"
 	},
 /turf/simulated/floor/specialroom/bar,
@@ -45643,7 +45638,7 @@
 	icon_state = "chair_wooden";
 	dir = 4
 	},
-/obj/landmark{
+/obj/landmark/spawner{
 	name = "shitty_bill"
 	},
 /turf/simulated/floor/specialroom/bar,

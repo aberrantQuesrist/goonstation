@@ -44,10 +44,6 @@ var/global/current_state = GAME_STATE_WORLD_INIT
 
 	pregame_timeleft = PREGAME_LOBBY_TICKS
 	boutput(world, "<B><FONT style='notice'>Welcome to the pre-game lobby!</FONT></B><br>Please, setup your character and select ready. Game will start in [pregame_timeleft] seconds.")
-	#if ASS_JAM
-	vote_manager.active_vote = new/datum/vote_new/mode("everyone-is-a-traitor")
-	boutput(world, "<B>ASS JAM: Everyone-Is-A-Traitor Mode vote has been started: [newVoteLinkStat.chat_link()] (120 seconds remaining)<br>(or click on the Status map as you do for map votes)</B>")
-	#endif
 
 	// let's try doing this here, yoloooo
 	// zamu 20200823: idk if this is even getting called...
@@ -61,6 +57,12 @@ var/global/current_state = GAME_STATE_WORLD_INIT
 	for(var/mob/new_player/C in world)
 		C.ready = 1
 	pregame_timeleft = 1
+	#endif
+
+	#if ASS_JAM
+	SPAWN_DBG(10 SECONDS) // wait for people to login etc.
+		vote_manager.active_vote = new/datum/vote_new/mode("everyone-is-a-traitor")
+		boutput(world, "<B>ASS JAM: Everyone-Is-A-Traitor Mode vote has been started: [newVoteLinkStat.chat_link()] (120 seconds remaining)<br>(or click on the Status map as you do for map votes)</B>")
 	#endif
 
 	var/did_mapvote = 0
@@ -223,33 +225,14 @@ var/global/current_state = GAME_STATE_WORLD_INIT
 		ircbot.event("roundstart")
 		mode.post_setup()
 
-		cleanup_landmarks()
-
 		event_wormhole_buildturflist()
 
 		mode.post_post_setup()
 
-		for(var/obj/landmark/artifact/A in landmarks)
-			LAGCHECK(LAG_LOW)
-			if (prob(A.spawnchance))
-				if (A.spawnpath)
-					new A.spawnpath(A.loc)
-				else
-					Artifact_Spawn(A.loc)
-
-		var/list/lootspawn = list()
-		for(var/obj/landmark/S in landmarks)//world)
-			if (S.name == "Loot spawn")
-				lootspawn.Add(S.loc)
-			LAGCHECK(LAG_LOW)
-		if(lootspawn.len)
-			var/lootamt = rand(5,15)
-			while(lootamt > 0)
-				LAGCHECK(LAG_LOW)
-				var/lootloc = lootspawn.len ? pick(lootspawn) : null
-				if (lootloc && prob(75))
-					new/obj/storage/crate/loot(lootloc)
-				--lootamt
+		for(var/turf/T in landmarks[LANDMARK_ARTIFACT_SPAWN])
+			var/spawnchance = landmarks[LANDMARK_ARTIFACT_SPAWN][T]
+			if (prob(spawnchance))
+				Artifact_Spawn(T)
 
 		shippingmarket.get_market_timeleft()
 
@@ -269,9 +252,9 @@ var/global/current_state = GAME_STATE_WORLD_INIT
 		participationRecorder.releaseHold()
 
 	SPAWN_DBG (6000) // 10 minutes in
-		for(var/obj/machinery/power/generatorTemp/E in machine_registry[MACHINES_POWER])
+		for(var/obj/machinery/power/monitor/smes/E in machine_registry[MACHINES_POWER])
 			LAGCHECK(LAG_LOW)
-			if (E.lastgen <= 0)
+			if(E.powernet?.avail <= 0)
 				command_alert("Reports indicate that the engine on-board [station_name()] has not yet been started. Setting up the engine is strongly recommended, or else stationwide power failures may occur.", "Power Grid Warning")
 			break
 
@@ -320,7 +303,7 @@ var/global/current_state = GAME_STATE_WORLD_INIT
 					player.close_spawn_windows()
 					var/mob/wraith/W = player.make_wraith()
 					if (W)
-						W.set_loc(pick(observer_start))
+						W.set_loc(pick_landmark(LANDMARK_OBSERVER))
 						logTheThing("debug", W, null, "<b>Late join</b>: assigned antagonist role: wraith.")
 						antagWeighter.record(role = "wraith", ckey = W.ckey)
 
@@ -328,7 +311,7 @@ var/global/current_state = GAME_STATE_WORLD_INIT
 					player.close_spawn_windows()
 					var/mob/living/intangible/blob_overmind/B = player.make_blob()
 					if (B)
-						B.set_loc(pick(observer_start))
+						B.set_loc(pick_landmark(LANDMARK_OBSERVER))
 						logTheThing("debug", B, null, "<b>Late join</b>: assigned antagonist role: blob.")
 						antagWeighter.record(role = "blob", ckey = B.ckey)
 
@@ -336,7 +319,7 @@ var/global/current_state = GAME_STATE_WORLD_INIT
 					player.close_spawn_windows()
 					var/mob/living/intangible/flock/flockmind/F = player.make_flockmind()
 					if (F)
-						F.set_loc(pick(observer_start))
+						F.set_loc(pick_landmark(LANDMARK_OBSERVER))
 						logTheThing("debug", F, null, "<b>Late join</b>: assigned antagonist role: flockmind.")
 						antagWeighter.record(role = "flockmind", ckey = F.ckey)
 
@@ -498,7 +481,7 @@ var/global/current_state = GAME_STATE_WORLD_INIT
 	round_end_data(1) //Export round end packet (normal completion)
 
 	var/pets_rescued = 0
-	for(var/pet in pets)
+	for(var/pet in by_cat[TR_CAT_PETS])
 		if(iscritter(pet))
 			var/obj/critter/P = pet
 			if(P.alive && in_centcom(P)) pets_rescued++
@@ -580,13 +563,8 @@ var/global/current_state = GAME_STATE_WORLD_INIT
 	boutput(world, score_tracker.heisenhat_stats())
 
 	//logTheThing("debug", null, null, "Zamujasa: [world.timeofday] ai law display")
-	for (var/mob/living/silicon/ai/aiPlayer in by_type[/mob/living/silicon/ai])
-		if (!isdead(aiPlayer))
-			boutput(world, "<b>The AI, [aiPlayer.name] ([aiPlayer.get_message_mob().key]) had the following laws at the end of the game:</b>")
-		else
-			boutput(world, "<b>The AI, [aiPlayer.name] ([aiPlayer.get_message_mob().key]) had the following laws when it was deactivated:</b>")
+	boutput(world, "<b>AIs and Cyborgs had the following laws at the end of the game:</b><br>[ticker.centralized_ai_laws.format_for_logs()]")
 
-		aiPlayer.show_laws(1)
 
 	//logTheThing("debug", null, null, "Zamujasa: [world.timeofday] resetting gauntlet (why? who cares! the game is over!)")
 	if (gauntlet_controller.state)
@@ -594,10 +572,7 @@ var/global/current_state = GAME_STATE_WORLD_INIT
 #ifdef CREW_OBJECTIVES
 	//logTheThing("debug", null, null, "Zamujasa: [world.timeofday] displaying completed crew objectives")
 	if (successfulCrew.len)
-		boutput(world, "<B>The following crewmembers completed all of their Crew Objectives:</B>")
-		for (var/i in successfulCrew)
-			boutput(world, "<B>[i]</B>")
-		boutput(world, "Good job!")
+		boutput(world, "<B>The following crewmembers completed all of their Crew Objectives:</B><br>[successfulCrew.Join("<br>")]<br>Good job!")
 	else
 		boutput(world, "<B>Nobody completed all of their Crew Objectives!</B>")
 #endif
@@ -748,6 +723,7 @@ var/global/current_state = GAME_STATE_WORLD_INIT
 					if (player.client.persistent_bank != player.client.persistent_bank)
 						player.client.set_persistent_bank(50000)
 					if (player_loses_held_item)
+						logTheThing("debug", null, null, "[player.ckey] lost held item")
 						player.client.set_last_purchase(0)
 
 					bank_earnings.pilot_bonus = pilot_bonus
@@ -791,7 +767,19 @@ var/global/current_state = GAME_STATE_WORLD_INIT
 
 	//logTheThing("debug", null, null, "Zamujasa: [world.timeofday] finished spacebux updates")
 
-
+	var/list/playtimes = list() //associative list with the format list("ckeys\[[player_ckey]]" = playtime_in_seconds)
+	for(var/datum/player/P in by_type[/datum/player])
+		if (!P.ckey)
+			continue
+		P.log_leave_time() //get our final playtime for the round (wont cause errors with people who already d/ced bc of smart code)
+		if (!P.current_playtime)
+			continue
+		playtimes["ckeys\[[P.ckey]]"] = round((P.current_playtime / (1 SECOND))) //rounds 1/10th seconds to seconds
+	try
+		apiHandler.queryAPI("playtime/record-multiple", playtimes)
+	catch(var/exception/e)
+		logTheThing("debug", null, null, "playtime was unable to be logged because of: [e.name]")
+		logTheThing("diary", null, null, "playtime was unable to be logged because of: [e.name]", "debug")
 	return 1
 
 /////
@@ -860,9 +848,3 @@ var/global/current_state = GAME_STATE_WORLD_INIT
 			return
 //Anything else, like sandbox, return.
 */
-
-/datum/controller/gameticker/proc/cleanup_landmarks()
-	for(var/obj/landmark/start/S in landmarks)
-		//Deleting Startpoints but we need the ai point to AI-ize people later
-		if (S.name != "AI")
-			S.dispose()

@@ -4838,7 +4838,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/landmark{
+/obj/landmark/spawner{
 	name = "monkeyspawn_tanhony"
 	},
 /turf/simulated/floor/carpet/grime,
@@ -6031,10 +6031,7 @@
 /area/station/crew_quarters/arcade/dungeon)
 "anQ" = (
 /obj/table/wood/round/auto,
-/obj/item/clothing/suit/cultist{
-	desc = "Neeeeerds.";
-	name = "+2 robes of dungeon mastery"
-	},
+/obj/item/clothing/suit/cultist/nerd,
 /obj/item/clothing/mask/skull,
 /turf/simulated/floor/carpet/red/fancy/innercorner/omni,
 /area/station/crew_quarters/arcade/dungeon)
@@ -13266,7 +13263,7 @@
 	on = 1;
 	target_pressure = 1000
 	},
-/obj/landmark{
+/obj/landmark/spawner{
 	name = "monkeyspawn_rathen"
 	},
 /turf/simulated/floor/redblack,
@@ -15330,8 +15327,8 @@
 /turf/simulated/wall/auto/supernorn,
 /area)
 "aIY" = (
-/obj/wingrille_spawn/auto,
-/turf/simulated/floor/plating,
+/obj/wingrille_spawn/auto/crystal,
+/turf/unsimulated/floor/circuit/vintage,
 /area/station/crewquarters/cryotron)
 "aIZ" = (
 /obj/machinery/conveyor{
@@ -19172,7 +19169,7 @@
 /turf/simulated/floor/grass,
 /area/station/medical/dome)
 "aRD" = (
-/obj/landmark{
+/obj/landmark/spawner{
 	name = "monkeyspawn_normal"
 	},
 /obj/cable{
@@ -19709,7 +19706,7 @@
 /turf/simulated/floor/grass,
 /area/station/medical/dome)
 "aSF" = (
-/obj/landmark{
+/obj/landmark/spawner{
 	name = "monkeyspawn_normal"
 	},
 /obj/machinery/light,
@@ -20514,7 +20511,7 @@
 /turf/simulated/floor/grey,
 /area/station/crew_quarters/quarters_east)
 "aUz" = (
-/turf/simulated/wall/auto/reinforced/supernorn,
+/turf/unsimulated/wall/auto/reinforced/supernorn,
 /area/station/crewquarters/cryotron)
 "aUA" = (
 /obj/machinery/door/airlock/pyro/glass{
@@ -20524,7 +20521,7 @@
 /obj/cable{
 	icon_state = "1-2"
 	},
-/turf/simulated/floor/grey,
+/turf/unsimulated/floor/circuit/vintage,
 /area/station/crewquarters/cryotron)
 "aUB" = (
 /obj/wingrille_spawn/auto,
@@ -20944,7 +20941,7 @@
 	dir = 8;
 	pixel_x = 20
 	},
-/turf/simulated/floor/sanitary,
+/turf/unsimulated/floor/sanitary,
 /area/station/crewquarters/cryotron)
 "aVA" = (
 /obj/table/reinforced/auto,
@@ -21649,7 +21646,8 @@
 	dir = 8;
 	pixel_x = -24
 	},
-/turf/simulated/floor/sanitary,
+/obj/machinery/light/emergency,
+/turf/unsimulated/floor/sanitary,
 /area/station/crewquarters/cryotron)
 "aWP" = (
 /obj/machinery/door/airlock/pyro{
@@ -21660,7 +21658,7 @@
 /obj/cable{
 	icon_state = "4-8"
 	},
-/turf/simulated/floor/sanitary,
+/turf/unsimulated/floor/circuit/vintage,
 /area/station/crewquarters/cryotron)
 "aWQ" = (
 /obj/cable{
@@ -22050,7 +22048,7 @@
 	d2 = 4;
 	icon_state = "0-4"
 	},
-/turf/simulated/floor/sanitary,
+/turf/unsimulated/floor/sanitary,
 /area/station/crewquarters/cryotron)
 "aXP" = (
 /obj/machinery/camera{
@@ -22059,15 +22057,14 @@
 	name = "autoname - SS13";
 	tag = ""
 	},
-/obj/machinery/light/emergency,
-/turf/simulated/floor/sanitary,
+/turf/unsimulated/floor/sanitary,
 /area/station/crewquarters/cryotron)
 "aXQ" = (
 /obj/stool/chair{
 	dir = 8
 	},
 /obj/machinery/light,
-/turf/simulated/floor/sanitary,
+/turf/unsimulated/floor/sanitary,
 /area/station/crewquarters/cryotron)
 "aXR" = (
 /obj/table/round/auto,
@@ -22078,7 +22075,8 @@
 	dir = 8;
 	pixel_x = 32
 	},
-/turf/simulated/floor/sanitary,
+/obj/machinery/light/emergency,
+/turf/unsimulated/floor/sanitary,
 /area/station/crewquarters/cryotron)
 "aXS" = (
 /obj/machinery/vending/cigarette,
@@ -24582,7 +24580,7 @@
 /turf/simulated/floor/red/checker,
 /area/station/maintenance)
 "bdK" = (
-/obj/landmark{
+/obj/landmark/spawner{
 	name = "monkeyspawn_normal"
 	},
 /turf/simulated/floor/grass,
@@ -28507,7 +28505,7 @@
 /area/station/crew_quarters/catering)
 "bmO" = (
 /obj/cryotron,
-/turf/simulated/floor/sanitary,
+/turf/unsimulated/floor/sanitary,
 /area/station/crewquarters/cryotron)
 "bmP" = (
 /obj/table/auto,
@@ -29714,7 +29712,7 @@
 	pixel_y = 22
 	},
 /obj/landmark/start/latejoin,
-/turf/simulated/floor/sanitary,
+/turf/unsimulated/floor/sanitary,
 /area/station/crewquarters/cryotron)
 "bpC" = (
 /obj/machinery/plantpot,
@@ -37899,7 +37897,7 @@
 /area/station/security/brig)
 "bIj" = (
 /obj/stool/bench/red/auto,
-/obj/landmark{
+/obj/landmark/spawner{
 	name = "monkeyspawn_stirstir"
 	},
 /turf/simulated/floor/grime,
@@ -45131,6 +45129,10 @@
 /area/station/security/brig)
 "bXr" = (
 /obj/table/reinforced/auto,
+/obj/machinery/defib_mount{
+	pixel_x = 2;
+	pixel_y = 3
+	},
 /obj/item/storage/firstaid/regular,
 /obj/item/device/analyzer/healthanalyzer,
 /obj/item/reagent_containers/syringe,
@@ -46816,7 +46818,7 @@
 /turf/simulated/floor/engine,
 /area/station/ai_monitored/armory)
 "cbc" = (
-/obj/landmark{
+/obj/landmark/spawner{
 	name = "monkeyspawn_mrmuggles"
 	},
 /turf/simulated/floor/specialroom/bar,
@@ -51176,7 +51178,7 @@
 /obj/cable{
 	icon_state = "4-8"
 	},
-/obj/landmark{
+/obj/landmark/spawner{
 	name = "monkeyspawn_horse"
 	},
 /turf/simulated/floor/specialroom/arcade,
@@ -53321,7 +53323,7 @@
 	},
 /area/station/hydroponics)
 "coV" = (
-/turf/simulated/floor/sanitary,
+/turf/unsimulated/floor/sanitary,
 /area/station/crewquarters/cryotron)
 "coW" = (
 /obj/machinery/light/small{
@@ -55489,7 +55491,7 @@
 /obj/cable{
 	icon_state = "1-4"
 	},
-/turf/simulated/floor/sanitary,
+/turf/unsimulated/floor/sanitary,
 /area/station/crewquarters/cryotron)
 "kHZ" = (
 /obj/wingrille_spawn/auto/crystal,
@@ -55901,7 +55903,7 @@
 /area/station/routingdepot/security)
 "nbR" = (
 /obj/storage/secure/closet/personal,
-/turf/simulated/floor/sanitary,
+/turf/unsimulated/floor/sanitary,
 /area/station/crewquarters/cryotron)
 "ncP" = (
 /obj/lattice{
@@ -56321,7 +56323,7 @@
 /obj/cable{
 	icon_state = "4-8"
 	},
-/turf/simulated/floor/sanitary,
+/turf/unsimulated/floor/sanitary,
 /area/station/crewquarters/cryotron)
 "pry" = (
 /obj/table/reinforced/auto,
@@ -56384,7 +56386,7 @@
 /turf/simulated/floor/black,
 /area/station/medical/robotics)
 "pJk" = (
-/obj/landmark{
+/obj/landmark/spawner{
 	name = "monkeyspawn_krimpus"
 	},
 /turf/simulated/floor/grass,
@@ -56719,7 +56721,7 @@
 /turf/simulated/floor,
 /area/station/hallway/primary/south)
 "rPP" = (
-/obj/landmark{
+/obj/landmark/spawner{
 	name = "monkeyspawn_albert"
 	},
 /turf/simulated/floor/white,
@@ -56913,7 +56915,7 @@
 /turf/simulated/floor,
 /area/station/hallway/secondary/south)
 "sMt" = (
-/obj/landmark{
+/obj/landmark/spawner{
 	name = "monkeyspawn_mrsmuggles"
 	},
 /turf/simulated/floor,
@@ -57095,7 +57097,7 @@
 /obj/cable{
 	icon_state = "1-2"
 	},
-/turf/simulated/floor/sanitary,
+/turf/unsimulated/floor/sanitary,
 /area/station/crewquarters/cryotron)
 "uaU" = (
 /obj/cable{

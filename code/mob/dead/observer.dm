@@ -4,7 +4,8 @@
 	icon = 'icons/mob/mob.dmi'
 	icon_state = "ghost"
 	layer = NOLIGHT_EFFECTS_LAYER_BASE
-	//event_handler_flags = 0//USE_FLUID_ENTER  //maybe? //Gerhazo : commented out due to ghosts having an interaction with the ectoplasmic destabilizer, this made their collision with the projectile not work
+	plane = PLANE_NOSHADOW_ABOVE
+	event_handler_flags = USE_CANPASS | IMMUNE_MANTA_PUSH | USE_FLUID_ENTER //maybe?
 	density = 0
 	canmove = 1
 	blinded = 0
@@ -18,7 +19,6 @@
 	var/delete_on_logout_reset = 1
 	var/obj/item/clothing/head/wig/wig = null
 	var/in_point_mode = 0
-
 	var/datum/hud/ghost_observer/hud
 
 	mob_flags = MOB_HEARS_ALL
@@ -90,8 +90,13 @@
 	P.pixel_x = target.pixel_x
 	P.pixel_y = target.pixel_y
 	P.color = "#5c00e6"
-	P.invisibility = src.invisibility
 
+#ifdef HALLOWEEN
+	//ghost points have a 20% chance to be seen by the living.
+	P.invisibility = prob(80) ? src.invisibility : 0
+#else
+	P.invisibility = src.invisibility
+#endif
 	src = null // required to make sure its deleted
 	SPAWN_DBG (20)
 		P.invisibility = 101
@@ -151,8 +156,14 @@
 /mob/dead/observer/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
 	if (src.icon_state != "doubleghost" && istype(mover, /obj/projectile))
 		var/obj/projectile/proj = mover
-		if (istype(proj.proj_data, /datum/projectile/energy_bolt_antighost))
+		if (proj.proj_data.hits_ghosts)
 			return 0
+#ifdef HALLOWEEN
+	if (istype(src.abilityHolder, /datum/abilityHolder/ghost_observer))
+		var/datum/abilityHolder/ghost_observer/GH = src.abilityHolder		
+		if (GH.spooking)
+			GH.stop_spooking()
+#endif
 
 	return 1
 
@@ -160,8 +171,20 @@
 	if (src.icon_state == "doubleghost")
 		return
 
+#ifdef HALLOWEEN
+	if (istype(src.abilityHolder, /datum/abilityHolder/ghost_observer))
+		var/datum/abilityHolder/ghost_observer/GH = src.abilityHolder		
+		if (GH.spooking)
+			GH.stop_spooking()
+			//animate(src, )	explode?
+			src.visible_message("<span class='alert'><b>[src] is busted! Maybe?!</b></span>","<span class='alert'>You are knocked out of your powerful state and feel dead again!</span>")
+			log_shot(P,src)
+			return
+#endif
+
 	src.icon_state = "doubleghost"
 	src.visible_message("<span class='alert'><b>[src] is busted!</b></span>","<span class='alert'>You are demateralized into a state of further death!</span>")
+
 
 	if (wig)
 		wig.set_loc(src.loc)
@@ -272,11 +295,7 @@
 		var/mob/dead/observer/O = new/mob/dead/observer(src)
 		O.bioHolder.CopyOther(src.bioHolder, copyActiveEffects = 0)
 		if (isghostrestrictedz(O.z) && !restricted_z_allowed(O, get_turf(O)) && !(src.client && src.client.holder))
-			var/OS = observer_start.len ? pick(observer_start) : locate(150, 150, 1)
-			if (OS)
-				O.set_loc(OS)
-			else
-				O.z = 1
+			O.set_loc(pick_landmark(LANDMARK_OBSERVER, locate(150, 150, 1)))
 		if (client) client.color = null  //needed for mesons dont kill me thx - ZeWaka
 		if (src.client && src.client.holder && src.stat !=2)
 			// genuinely not sure what this is here for since we're setting the
@@ -299,10 +318,24 @@
 
 
 /mob/dead/observer/movement_delay()
-	if (src.client && src.client.check_key(KEY_RUN))
+#ifdef HALLOWEEN
+	if (istype(src.abilityHolder, /datum/abilityHolder/ghost_observer))
+		var/datum/abilityHolder/ghost_observer/GAH = src.abilityHolder
+		if (GAH.spooking)
+			return movement_delay_modifier + 1.5
+
+	if (src?.client.check_key(KEY_RUN))
 		return 0.4 + movement_delay_modifier
 	else
 		return 0.75 + movement_delay_modifier
+
+#else
+	if (src?.client.check_key(KEY_RUN))
+		return 0.4 + movement_delay_modifier
+	else
+		return 0.75 + movement_delay_modifier
+
+#endif
 
 /mob/dead/observer/build_keybind_styles(client/C)
 	..()
@@ -435,7 +468,7 @@
 	if(!canmove) return
 
 	if (NewLoc && isghostrestrictedz(src.z) && !restricted_z_allowed(src, NewLoc) && !(src.client && src.client.holder && !src.client.holder.tempmin))
-		var/OS = observer_start.len ? pick(observer_start) : locate(1, 1, 1)
+		var/OS = pick_landmark(LANDMARK_OBSERVER, locate(1, 1, 1))
 		if (OS)
 			src.set_loc(OS)
 		else
@@ -788,6 +821,4 @@ mob/dead/observer/proc/insert_observer(var/atom/target)
 		src.client.mob = newobs
 	set_loc(newobs)
 	if (isghostrestrictedz(newobs.z) && !restricted_z_allowed(newobs, get_turf(newobs)) && !(src.client && src.client.holder))
-		var/OS = observer_start.len ? pick(observer_start) : locate(150, 150, 1)
-		if (OS)
-			newobs.set_loc(OS)
+		newobs.set_loc(pick_landmark(LANDMARK_OBSERVER, locate(150, 150, 1)))
